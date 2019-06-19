@@ -1,6 +1,6 @@
 {
   "name": "homebridge-commax-boiler",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Commax Home Automation Boiler for Homebridge",
   "main": "index.js",
   "keywords": [
