@@ -1,4 +1,4 @@
-var Service, Characteristic, HomnebridgeAPI
+let Service, Characteristic, HomnebridgeAPI
 
 let timer = require('timer')
 let request = require('request-promise')
@@ -11,7 +11,6 @@ module.exports = function(homebridge) {
 }
 
 function Thermostat(log, config) {
-
     this.log = log
     this.config = config
     this.name = config.name
@@ -23,20 +22,15 @@ function Thermostat(log, config) {
     this.manufacturer = config.manufacturer || "DefaultManufacturer"
     this.model = config.model || "DefaultModel"
     this.serialnumber = config.serialnumber || "DefaultSerialnumber"
-
     this.temperatureDisplayUnits = config.temperatureDisplayUnits || 0
-
     this.cacheDir = HomnebridgeAPI.user.persistPath()
     this.storage = require('node-persist')
     this.storage.initSync({
         dir: this.cacheDir,
         forgiveParseErrors: true
     })
-
     this.service = new Service.Thermostat(this.name)
-
-    var that = this
-
+    let that = this
     // 주기적으로 보일러의 현재 상태 값을 가져옴
     function check() {
         const state_options = {
@@ -51,7 +45,7 @@ function Thermostat(log, config) {
             .then(
                 (html) => {
                     // console.log(html)
-                    var result = html.split("#")
+                    let result = html.split("#")
                     // 보일러 온/오프 상태 확인 후 스위치 값에 적용
                     if (result[2].includes('On')) {
                         that.storage.setItemSync(that.name + '&' + 'TargetHeatingCoolingState', 1)
