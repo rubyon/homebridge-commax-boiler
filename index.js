@@ -1,3 +1,5 @@
+"use strict"
+
 let Service, Characteristic, HomnebridgeAPI
 
 let timer = require('timer')
